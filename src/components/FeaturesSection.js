@@ -1,51 +1,57 @@
+//Updated features section
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  FaHome, 
-  FaShieldAlt, 
-  FaLightbulb, 
-  FaThermometerHalf, 
-  FaMobile, 
-  FaLeaf 
-} from 'react-icons/fa';
+import { FaHome, FaShieldAlt, FaLightbulb, FaMobile, FaLeaf, FaCog } from 'react-icons/fa';
 
 const FeaturesSection = () => {
   const features = [
     {
       icon: <FaHome size={40} />,
       title: "Complete Home Automation",
-      description: "Control every aspect of your home from a single interface"
+      description: "Transform your entire home with integrated smart solutions that work seamlessly together.",
+      image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+      benefits: ["Centralized Control", "Scene Management", "Voice Integration"]
     },
     {
       icon: <FaShieldAlt size={40} />,
       title: "Advanced Security",
-      description: "Smart locks, cameras, and monitoring systems for peace of mind"
+      description: "Protect your family with intelligent security systems and real-time monitoring.",
+      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop",
+      benefits: ["24/7 Monitoring", "Smart Alerts", "Remote Access"]
     },
     {
       icon: <FaLightbulb size={40} />,
       title: "Smart Lighting",
-      description: "Automated lighting that adapts to your lifestyle and preferences"
-    },
-    {
-      icon: <FaThermometerHalf size={40} />,
-      title: "Climate Control",
-      description: "Intelligent temperature management for optimal comfort"
+      description: "Intelligent lighting solutions that adapt to your lifestyle and save energy.",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+      benefits: ["Motion Sensors", "Dimming Control", "Color Changing"]
     },
     {
       icon: <FaMobile size={40} />,
       title: "Mobile Control",
-      description: "Manage your home remotely with our intuitive mobile app"
+      description: "Control your entire home from anywhere with our intuitive mobile application.",
+      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop",
+      benefits: ["Remote Access", "Real-time Status", "Push Notifications"]
     },
     {
       icon: <FaLeaf size={40} />,
-      title: "Energy Efficient",
-      description: "Reduce energy consumption with smart monitoring and automation"
+      title: "Energy Efficiency",
+      description: "Reduce your carbon footprint and electricity bills with smart energy management.",
+      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=300&fit=crop",
+      benefits: ["Usage Analytics", "Auto Optimization", "Cost Savings"]
+    },
+    {
+      icon: <FaCog size={40} />,
+      title: "Easy Installation",
+      description: "Professional installation and setup with minimal disruption to your daily routine.",
+      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
+      benefits: ["Expert Technicians", "Quick Setup", "Full Support"]
     }
   ];
 
   const sectionStyle = {
     padding: '100px 0',
-    position: 'relative',
+    background: 'rgba(0, 0, 0, 0.1)',
   };
 
   const titleStyle = {
@@ -58,40 +64,65 @@ const FeaturesSection = () => {
     WebkitTextFillColor: 'transparent',
   };
 
-const gridStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-  gap: '2rem',
-  marginTop: '3rem',
-};
+  const gridStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+    gap: '2rem',
+    marginTop: '3rem',
+  };
 
-
-  const featureCardStyle = {
+  const cardStyle = {
     background: 'rgba(255, 255, 255, 0.1)',
     backdropFilter: 'blur(10px)',
     border: '1px solid rgba(255, 255, 255, 0.2)',
     borderRadius: '16px',
-    padding: '2rem',
-    textAlign: 'center',
+    overflow: 'hidden',
     transition: 'all 0.3s ease',
-    cursor: 'pointer',
   };
 
-  const iconStyle = {
-    color: '#667eea',
+  const imageStyle = {
+    width: '100%',
+    height: '200px',
+    objectFit: 'cover',
+  };
+
+  const contentStyle = {
+    padding: '2rem',
+  };
+
+  const iconContainerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
     marginBottom: '1rem',
   };
 
-  const featureTitleStyle = {
+  const titleCardStyle = {
     fontSize: '1.3rem',
     fontWeight: '600',
-    marginBottom: '1rem',
     color: 'white',
+    margin: 0,
   };
 
-  const featureDescStyle = {
+  const descriptionStyle = {
     opacity: '0.8',
     lineHeight: '1.6',
+    marginBottom: '1.5rem',
+  };
+
+  const benefitsStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '0.5rem',
+  };
+
+  const benefitTagStyle = {
+    background: 'rgba(102, 126, 234, 0.2)',
+    color: '#667eea',
+    padding: '0.25rem 0.75rem',
+    borderRadius: '12px',
+    fontSize: '0.85rem',
+    fontWeight: '500',
   };
 
   return (
@@ -111,22 +142,34 @@ const gridStyle = {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              style={featureCardStyle}
+              style={cardStyle}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ 
                 y: -10,
-                background: 'rgba(255, 255, 255, 0.15)',
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)'
+                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+                background: 'rgba(255, 255, 255, 0.15)'
               }}
             >
-              <div style={iconStyle}>
-                {feature.icon}
+              <img src={feature.image} alt={feature.title} style={imageStyle} />
+              <div style={contentStyle}>
+                <div style={iconContainerStyle}>
+                  <div style={{ color: '#667eea' }}>
+                    {feature.icon}
+                  </div>
+                  <h3 style={titleCardStyle}>{feature.title}</h3>
+                </div>
+                <p style={descriptionStyle}>{feature.description}</p>
+                <div style={benefitsStyle}>
+                  {feature.benefits.map((benefit, idx) => (
+                    <span key={idx} style={benefitTagStyle}>
+                      {benefit}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <h3 style={featureTitleStyle}>{feature.title}</h3>
-              <p style={featureDescStyle}>{feature.description}</p>
             </motion.div>
           ))}
         </div>
