@@ -475,3 +475,204 @@ button:focus,
 .products-container::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #5a6fd8, #6a4190);
 }
+
+
+
+
+
+/* Add these additional responsive styles to your existing globals.css */
+
+/* Enhanced responsive styles for contact form */
+@media (max-width: 768px) {
+  .contact-content {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  
+  .contact-title {
+    font-size: 2rem !important;
+  }
+  
+  .contact-subtitle {
+    font-size: 1rem !important;
+    padding: 0 10px !important;
+  }
+  
+  .contact-form {
+    padding: 1.5rem !important;
+  }
+  
+  .info-item {
+    padding: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .social-links {
+    justify-content: center !important;
+  }
+  
+  /* Product grid adjustments */
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  }
+  
+  .category-buttons {
+    justify-content: center !important;
+    gap: 0.5rem !important;
+  }
+  
+  .category-button {
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 60px 0 !important;
+  }
+  
+  .contact-container {
+    padding: 0 15px !important;
+  }
+  
+  .contact-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .contact-form {
+    padding: 1rem !important;
+  }
+  
+  .form-input, .form-textarea {
+    padding: 10px 12px !important;
+    font-size: 14px !important;
+  }
+  
+  .form-button {
+    padding: 12px !important;
+    font-size: 14px !important;
+  }
+  
+  .info-item {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 0.5rem !important;
+  }
+  
+  .info-icon {
+    align-self: center !important;
+  }
+  
+  /* Products responsive */
+  .products-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .category-buttons {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  
+  .product-detail-modal {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  
+  .feature-list {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .action-buttons {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  
+  /* Header responsive */
+  .nav-links {
+    gap: 1rem !important;
+  }
+  
+  .nav-links li a {
+    font-size: 14px !important;
+  }
+  
+  .logo {
+    font-size: 1.4rem !important;
+  }
+}
+
+/* Mobile-first approach for very small screens */
+@media (max-width: 360px) {
+  .contact-container {
+    padding: 0 10px !important;
+  }
+  
+  .contact-title {
+    font-size: 1.6rem !important;
+  }
+  
+  .contact-form {
+    padding: 0.75rem !important;
+  }
+  
+  .info-item {
+    padding: 0.75rem !important;
+  }
+  
+  .social-links {
+    gap: 0.5rem !important;
+  }
+  
+  .social-links a {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 1rem !important;
+  }
+}
+
+/* Enhanced focus states for better accessibility */
+.form-input:focus,
+.form-textarea:focus {
+  outline: 2px solid #667eea !important;
+  outline-offset: 2px !important;
+}
+
+/* Smooth transitions for all form elements */
+.form-input,
+.form-textarea,
+.form-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Loading states */
+.form-button:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Custom placeholder styles */
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+  opacity: 1 !important;
+}
+
+/* Enhanced hover effects for social links */
+.social-links a:hover {
+  transform: translateY(-3px) scale(1.1) !important;
+}
+
+/* Improved spacing for mobile */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 80px 0 60px 0 !important;
+  }
+  
+  .features-section,
+  .products-section,
+  .testimonials-section {
+    padding: 60px 0 !important;
+  }
+}

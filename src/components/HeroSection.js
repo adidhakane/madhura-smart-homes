@@ -10,19 +10,19 @@ const HeroSection = () => {
     {
       title: "Transform Your Home Into a Smart Haven",
       subtitle: "Experience the Future of Living with Intelligent Automation",
-      image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1200&h=800&fit=crop",
+      image: "/hero-image1.png",
       cta: "Explore Solutions"
     },
     {
       title: "Intelligent Lighting Solutions",
       subtitle: "Control Every Light with Voice Commands & Smart Sensors",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=800&fit=crop",
+      image: "/hero-image2.png",
       cta: "View Lighting Products"
     },
     {
       title: "Advanced Security Systems",
       subtitle: "Protect Your Family with Smart Monitoring & Access Control",
-      image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1200&h=800&fit=crop",
+      image: "/hero-image3.png",
       cta: "Security Solutions"
     }
   ];
@@ -166,20 +166,6 @@ const HeroSection = () => {
             >
               {heroSlides[currentSlide].cta}
               <FaArrowRight />
-            </button>
-            <button
-              style={secondaryButtonStyle}
-              onMouseEnter={(e) => {
-                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-                e.target.style.transform = 'translateY(-3px)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                e.target.style.transform = 'translateY(0)';
-              }}
-            >
-              <FaPlay />
-              Watch Demo
             </button>
           </div>
         </motion.div>

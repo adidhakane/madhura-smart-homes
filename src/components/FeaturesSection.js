@@ -9,42 +9,42 @@ const FeaturesSection = () => {
       icon: <FaHome size={40} />,
       title: "Complete Home Automation",
       description: "Transform your entire home with integrated smart solutions that work seamlessly together.",
-      image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+      image: "/features-image1.png",
       benefits: ["Centralized Control", "Scene Management", "Voice Integration"]
     },
     {
       icon: <FaShieldAlt size={40} />,
       title: "Advanced Security",
       description: "Protect your family with intelligent security systems and real-time monitoring.",
-      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop",
+      image: "/features-image2.png",
       benefits: ["24/7 Monitoring", "Smart Alerts", "Remote Access"]
     },
     {
       icon: <FaLightbulb size={40} />,
       title: "Smart Lighting",
       description: "Intelligent lighting solutions that adapt to your lifestyle and save energy.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+      image: "/features-image3.png",
       benefits: ["Motion Sensors", "Dimming Control", "Color Changing"]
     },
     {
       icon: <FaMobile size={40} />,
       title: "Mobile Control",
       description: "Control your entire home from anywhere with our intuitive mobile application.",
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop",
+      image: "/features-image4.png",
       benefits: ["Remote Access", "Real-time Status", "Push Notifications"]
     },
     {
       icon: <FaLeaf size={40} />,
       title: "Energy Efficiency",
       description: "Reduce your carbon footprint and electricity bills with smart energy management.",
-      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=300&fit=crop",
+      image: "/features-image5.png",
       benefits: ["Usage Analytics", "Auto Optimization", "Cost Savings"]
     },
     {
       icon: <FaCog size={40} />,
       title: "Easy Installation",
       description: "Professional installation and setup with minimal disruption to your daily routine.",
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
+      image: "/features-image6.png",
       benefits: ["Expert Technicians", "Quick Setup", "Full Support"]
     }
   ];
