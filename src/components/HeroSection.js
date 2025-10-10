@@ -1,127 +1,187 @@
-import React from 'react';
+//First, let's update the HeroSection.js with more images
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { FaPlay, FaArrowRight } from 'react-icons/fa';
 
 const HeroSection = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroSlides = [
+    {
+      title: "Transform Your Home Into a Smart Haven",
+      subtitle: "Experience the Future of Living with Intelligent Automation",
+      image: "/hero-image1.png",
+      cta: "Explore Solutions"
+    },
+    {
+      title: "Intelligent Lighting Solutions",
+      subtitle: "Control Every Light with Voice Commands & Smart Sensors",
+      image: "/hero-image2.png",
+      cta: "View Lighting Products"
+    },
+    {
+      title: "Advanced Security Systems",
+      subtitle: "Protect Your Family with Smart Monitoring & Access Control",
+      image: "/hero-image3.png",
+      cta: "Security Solutions"
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
   const sectionStyle = {
     minHeight: '100vh',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
     position: 'relative',
     overflow: 'hidden',
-  };
-
-  const contentStyle = {
-    maxWidth: '800px',
-    zIndex: 2,
-  };
-
-  const titleStyle = {
-    fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-    fontWeight: '800',
-    marginBottom: '1.5rem',
-    background: 'linear-gradient(45deg, #667eea, #764ba2, #f093fb)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    lineHeight: '1.2',
-  };
-
-  const subtitleStyle = {
-    fontSize: '1.3rem',
-    marginBottom: '2rem',
-    opacity: '0.9',
-    lineHeight: '1.6',
-  };
-
-  const buttonContainerStyle = {
-    display: 'flex',
-    gap: '1rem',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  };
-
-  const secondaryBtnStyle = {
-    background: 'transparent',
-    border: '2px solid rgba(255, 255, 255, 0.3)',
-    padding: '12px 30px',
-    borderRadius: '50px',
-    color: 'white',
-    fontWeight: '600',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    textDecoration: 'none',
-    display: 'inline-block',
   };
 
   const backgroundStyle = {
     position: 'absolute',
     top: 0,
     left: 0,
-    right: 0,
-    bottom: 0,
-    background: `
-      radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, rgba(240, 147, 251, 0.2) 0%, transparent 50%)
-    `,
-    zIndex: 1,
+    width: '100%',
+    height: '100%',
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(${heroSlides[currentSlide].image})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    transition: 'all 1s ease-in-out',
+  };
+
+  const contentStyle = {
+    position: 'relative',
+    zIndex: 2,
+    textAlign: 'center',
+    color: 'white',
+    maxWidth: '800px',
+    margin: '0 auto',
+    padding: '0 20px',
+  };
+
+  const titleStyle = {
+    fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+    fontWeight: '800',
+    marginBottom: '1.5rem',
+    lineHeight: '1.2',
+  };
+
+  const subtitleStyle = {
+    fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
+    marginBottom: '3rem',
+    opacity: '0.9',
+    lineHeight: '1.6',
+  };
+
+  const ctaContainerStyle = {
+    display: 'flex',
+    gap: '1rem',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+  };
+
+  const primaryButtonStyle = {
+    background: 'linear-gradient(45deg, #667eea, #764ba2)',
+    border: 'none',
+    padding: '15px 30px',
+    borderRadius: '50px',
+    color: 'white',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+  };
+
+  const secondaryButtonStyle = {
+    background: 'rgba(255, 255, 255, 0.1)',
+    border: '2px solid rgba(255, 255, 255, 0.3)',
+    padding: '15px 30px',
+    borderRadius: '50px',
+    color: 'white',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    backdropFilter: 'blur(10px)',
+  };
+
+  const slideDots = {
+    position: 'absolute',
+    bottom: '2rem',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    display: 'flex',
+    gap: '1rem',
+    zIndex: 3,
+  };
+
+  const dotStyle = {
+    width: '12px',
+    height: '12px',
+    borderRadius: '50%',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
   };
 
   return (
     <section id="home" style={sectionStyle}>
-      <div style={backgroundStyle}></div>
+      <div style={backgroundStyle} />
+      
       <div className="container">
-        <motion.div 
+        <motion.div
+          key={currentSlide}
           style={contentStyle}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8 }}
         >
-          <motion.h1 
-            style={titleStyle}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Transform Your Home Into a Smart Living Experience
-          </motion.h1>
-          
-          <motion.p 
-            style={subtitleStyle}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            Experience the future of home automation with our cutting-edge smart home solutions. 
-            Control lighting, security, climate, and more with intelligent technology.
-          </motion.p>
-          
-          <motion.div 
-            style={buttonContainerStyle}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <a href="#products" className="btn-primary">
-              Explore Products
-            </a>
-            <a 
-              href="#contact" 
-              style={secondaryBtnStyle}
+          <h1 style={titleStyle}>
+            {heroSlides[currentSlide].title}
+          </h1>
+          <p style={subtitleStyle}>
+            {heroSlides[currentSlide].subtitle}
+          </p>
+          <div style={ctaContainerStyle}>
+            <button
+              style={primaryButtonStyle}
               onMouseEnter={(e) => {
-                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                e.target.style.transform = 'translateY(-3px)';
+                e.target.style.boxShadow = '0 10px 30px rgba(102, 126, 234, 0.4)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.background = 'transparent';
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'none';
               }}
             >
-              Get Quote
-            </a>
-          </motion.div>
+              {heroSlides[currentSlide].cta}
+              <FaArrowRight />
+            </button>
+          </div>
         </motion.div>
+      </div>
+
+      <div style={slideDots}>
+        {heroSlides.map((_, index) => (
+          <div
+            key={index}
+            style={{
+              ...dotStyle,
+              background: index === currentSlide ? '#667eea' : 'rgba(255, 255, 255, 0.5)',
+            }}
+            onClick={() => setCurrentSlide(index)}
+          />
+        ))}
       </div>
     </section>
   );
