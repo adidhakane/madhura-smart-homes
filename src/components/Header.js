@@ -160,6 +160,11 @@ import ContactLightbox from './ContactLightbox';
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
+  
+  // Feature flag to control lightbox behavior
+  // Set to true to show lightboxes, false to scroll to sections
+  // TO ENABLE LIGHTBOXES: Change this value to true
+  const enableLightboxes = false;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -214,9 +219,9 @@ const Header = () => {
   };
 
   const handleNavClick = (section) => {
-    if (section === 'products') {
+    if (enableLightboxes && section === 'products') {
       setActiveModal('products');
-    } else if (section === 'contact') {
+    } else if (enableLightboxes && section === 'contact') {
       setActiveModal('contact');
     } else {
       document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
@@ -280,21 +285,25 @@ const Header = () => {
         </nav>
       </motion.header>
 
-      <Lightbox
-        isOpen={activeModal === 'products'}
-        onClose={() => setActiveModal(null)}
-        title="Smart Home Products"
-      >
-        <ProductsLightbox />
-      </Lightbox>
+      {enableLightboxes && (
+        <>
+          <Lightbox
+            isOpen={activeModal === 'products'}
+            onClose={() => setActiveModal(null)}
+            title="Smart Home Products"
+          >
+            <ProductsLightbox />
+          </Lightbox>
 
-      <Lightbox
-        isOpen={activeModal === 'contact'}
-        onClose={() => setActiveModal(null)}
-        title="Get In Touch With Us"
-      >
-        <ContactLightbox />
-      </Lightbox>
+          <Lightbox
+            isOpen={activeModal === 'contact'}
+            onClose={() => setActiveModal(null)}
+            title="Get In Touch With Us"
+          >
+            <ContactLightbox />
+          </Lightbox>
+        </>
+      )}
     </>
   );
 };

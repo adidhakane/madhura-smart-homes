@@ -59,9 +59,14 @@ import './styles/globals.css';
 
 function App() {
   const [showProductsModal, setShowProductsModal] = useState(false);
+  
+  // Feature flag to control product lightbox behavior
+  // Set to true to enable product lightboxes, false to disable
+  // TO ENABLE PRODUCT LIGHTBOXES: Change this value to true
+  const enableProductLightboxes = false;
 
   const handleProductClick = (product) => {
-    if (product === 'viewAll' || product) {
+    if (enableProductLightboxes && (product === 'viewAll' || product)) {
       setShowProductsModal(true);
     }
   };
@@ -78,13 +83,15 @@ function App() {
         <ContactForm />
       </main>
 
-      <Lightbox
-        isOpen={showProductsModal}
-        onClose={() => setShowProductsModal(false)}
-        title="Complete Product Catalog"
-      >
-        <ProductsLightbox />
-      </Lightbox>
+      {enableProductLightboxes && (
+        <Lightbox
+          isOpen={showProductsModal}
+          onClose={() => setShowProductsModal(false)}
+          title="Complete Product Catalog"
+        >
+          <ProductsLightbox />
+        </Lightbox>
+      )}
     </div>
   );
 }
