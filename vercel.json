@@ -1,18 +1,12 @@
 {
-  "version": 2,
-  "builds": [
+  "buildCommand": "cd madhura-smart-homes && npm run build",
+  "outputDirectory": "madhura-smart-homes/build",
+  "installCommand": "cd madhura-smart-homes && npm install",
+  "framework": null,
+  "rewrites": [
     {
-      "src": "madhura-smart-homes/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
