@@ -272,7 +272,7 @@ import { productCategories, products } from '../data/products';
 const ProductsSection = ({ onProductClick }) => {
   // Remove 'all' category for home page
   const homeCategories = productCategories.filter(cat => cat.id !== 'all');
-  const [selectedCategory, setSelectedCategory] = useState('motion-sensors');
+  const [selectedCategory, setSelectedCategory] = useState('security-sensors');
 
   const filteredProducts = products.filter(product => product.category === selectedCategory).slice(0, 4);
 
@@ -319,9 +319,10 @@ const ProductsSection = ({ onProductClick }) => {
 
   const gridStyle = {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 320px))',
     gap: '2rem',
     marginBottom: '3rem',
+    justifyContent: 'center',
   };
 
   const productCardStyle = {
@@ -331,12 +332,16 @@ const ProductsSection = ({ onProductClick }) => {
     overflow: 'hidden',
     transition: 'all 0.3s ease',
     cursor: 'pointer',
+    maxWidth: '320px',
+    width: '100%',
   };
 
   const productImageStyle = {
     width: '100%',
-    height: '200px',
-    objectFit: 'cover',
+    height: '250px',
+    objectFit: 'contain',
+    backgroundColor: '#ffffff',
+    padding: '20px',
   };
 
   const productInfoStyle = {
