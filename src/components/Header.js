@@ -7,6 +7,11 @@
 // const Header = () => {
 //   const [scrolled, setScrolled] = useState(false);
 //   const [activeModal, setActiveModal] = useState(null);
+  
+//   // Feature flag to control lightbox behavior
+//   // Set to true to show lightboxes, false to scroll to sections
+//   // TO ENABLE LIGHTBOXES: Change this value to true
+//   const enableLightboxes = false;
 
 //   useEffect(() => {
 //     const handleScroll = () => {
@@ -61,9 +66,9 @@
 //   };
 
 //   const handleNavClick = (section) => {
-//     if (section === 'products') {
+//     if (enableLightboxes && section === 'products') {
 //       setActiveModal('products');
-//     } else if (section === 'contact') {
+//     } else if (enableLightboxes && section === 'contact') {
 //       setActiveModal('contact');
 //     } else {
 //       document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
@@ -127,27 +132,30 @@
 //         </nav>
 //       </motion.header>
 
-//       <Lightbox
-//         isOpen={activeModal === 'products'}
-//         onClose={() => setActiveModal(null)}
-//         title="Tata Power EZ Home Products"
-//       >
-//         <ProductsLightbox />
-//       </Lightbox>
+//       {enableLightboxes && (
+//         <>
+//           <Lightbox
+//             isOpen={activeModal === 'products'}
+//             onClose={() => setActiveModal(null)}
+//             title="Smart Home Products"
+//           >
+//             <ProductsLightbox />
+//           </Lightbox>
 
-//       <Lightbox
-//         isOpen={activeModal === 'contact'}
-//         onClose={() => setActiveModal(null)}
-//         title="Get In Touch With Us"
-//       >
-//         <ContactLightbox />
-//       </Lightbox>
+//           <Lightbox
+//             isOpen={activeModal === 'contact'}
+//             onClose={() => setActiveModal(null)}
+//             title="Get In Touch With Us"
+//           >
+//             <ContactLightbox />
+//           </Lightbox>
+//         </>
+//       )}
 //     </>
 //   );
 // };
 
 // export default Header;
-
 
 
 
@@ -181,9 +189,10 @@ const Header = () => {
     zIndex: 1000,
     padding: '1rem 0',
     transition: 'all 0.3s ease',
-    background: scrolled ? 'rgba(26, 26, 46, 0.95)' : 'transparent',
-    backdropFilter: scrolled ? 'blur(10px)' : 'none',
-    borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.1)' : 'none',
+    background: scrolled ? 'rgba(26, 26, 26, 0.95)' : 'rgba(26, 26, 26, 0.8)',
+    backdropFilter: 'blur(10px)',
+    borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid transparent',
+    boxShadow: scrolled ? '0 2px 10px rgba(0, 0, 0, 0.5)' : 'none',
   };
 
   const navStyle = {
@@ -198,10 +207,11 @@ const Header = () => {
   const logoStyle = {
     fontSize: '1.8rem',
     fontWeight: '700',
-    background: 'linear-gradient(45deg, #667eea, #764ba2)',
+    background: 'linear-gradient(135deg, #e5e5e5, #a3a3a3)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     cursor: 'pointer',
+    transition: 'all 0.3s ease',
   };
 
   const navLinksStyle = {
@@ -211,11 +221,13 @@ const Header = () => {
   };
 
   const linkStyle = {
-    color: 'white',
+    color: '#b0b0b0',
     textDecoration: 'none',
     fontWeight: '500',
-    transition: 'color 0.3s ease',
+    transition: 'all 0.3s ease',
     cursor: 'pointer',
+    position: 'relative',
+    padding: '0.5rem 0',
   };
 
   const handleNavClick = (section) => {
@@ -237,7 +249,12 @@ const Header = () => {
         transition={{ duration: 0.6 }}
       >
         <nav style={navStyle}>
-          <div style={logoStyle} onClick={() => handleNavClick('home')}>
+          <div 
+            style={logoStyle} 
+            onClick={() => handleNavClick('home')}
+            onMouseEnter={(e) => e.target.style.filter = 'brightness(1.3)'}
+            onMouseLeave={(e) => e.target.style.filter = 'brightness(1)'}
+          >
             Madhura Smart Homes
           </div>
           <ul style={navLinksStyle}>
@@ -245,8 +262,14 @@ const Header = () => {
               <a 
                 style={linkStyle} 
                 onClick={() => handleNavClick('home')}
-                onMouseEnter={(e) => e.target.style.color = '#667eea'}
-                onMouseLeave={(e) => e.target.style.color = 'white'}
+                onMouseEnter={(e) => {
+                  e.target.style.color = '#e5e5e5';
+                  e.target.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = '#b0b0b0';
+                  e.target.style.transform = 'translateY(0)';
+                }}
               >
                 Home
               </a>
@@ -255,8 +278,14 @@ const Header = () => {
               <a 
                 style={linkStyle} 
                 onClick={() => handleNavClick('features')}
-                onMouseEnter={(e) => e.target.style.color = '#667eea'}
-                onMouseLeave={(e) => e.target.style.color = 'white'}
+                onMouseEnter={(e) => {
+                  e.target.style.color = '#e5e5e5';
+                  e.target.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = '#b0b0b0';
+                  e.target.style.transform = 'translateY(0)';
+                }}
               >
                 Features
               </a>
@@ -265,8 +294,14 @@ const Header = () => {
               <a 
                 style={linkStyle} 
                 onClick={() => handleNavClick('products')}
-                onMouseEnter={(e) => e.target.style.color = '#667eea'}
-                onMouseLeave={(e) => e.target.style.color = 'white'}
+                onMouseEnter={(e) => {
+                  e.target.style.color = '#e5e5e5';
+                  e.target.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = '#b0b0b0';
+                  e.target.style.transform = 'translateY(0)';
+                }}
               >
                 Products
               </a>
@@ -275,8 +310,14 @@ const Header = () => {
               <a 
                 style={linkStyle} 
                 onClick={() => handleNavClick('contact')}
-                onMouseEnter={(e) => e.target.style.color = '#667eea'}
-                onMouseLeave={(e) => e.target.style.color = 'white'}
+                onMouseEnter={(e) => {
+                  e.target.style.color = '#e5e5e5';
+                  e.target.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = '#b0b0b0';
+                  e.target.style.transform = 'translateY(0)';
+                }}
               >
                 Contact
               </a>
