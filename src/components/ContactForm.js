@@ -535,10 +535,10 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
-  // ⚠️ REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS
-  const EMAILJS_SERVICE_ID = 'service_7ejmbed';
-  const EMAILJS_TEMPLATE_ID = 'template_ygvdeqz';
-  const EMAILJS_PUBLIC_KEY = 'zSZdQSxi8M9Jvjfrk';
+  // EmailJS credentials from environment variables
+  const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+  const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
   const handleChange = (e) => {
     setFormData({
