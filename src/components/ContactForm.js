@@ -26,7 +26,7 @@
 
 //   const sectionStyle = {
 //     padding: '100px 0',
-//     background: 'rgba(0, 0, 0, 0.05)',
+//     background: '#0d0d0d',
 //   };
 
 //   const containerStyle = {
@@ -40,7 +40,7 @@
 //     fontSize: '2.5rem',
 //     fontWeight: '700',
 //     marginBottom: '1rem',
-//     background: 'linear-gradient(45deg, #667eea, #764ba2)',
+//     background: 'linear-gradient(135deg, #e5e5e5, #a3a3a3)',
 //     WebkitBackgroundClip: 'text',
 //     WebkitTextFillColor: 'transparent',
 //   };
@@ -48,7 +48,7 @@
 //   const subtitleStyle = {
 //     textAlign: 'center',
 //     fontSize: '1.1rem',
-//     opacity: 0.8,
+//     color: '#b0b0b0',
 //     marginBottom: '3rem',
 //     maxWidth: '600px',
 //     margin: '0 auto 3rem auto',
@@ -62,7 +62,7 @@
 //   };
 
 //   const contactInfoStyle = {
-//     color: 'white',
+//     color: '#e5e5e5',
 //   };
 
 //   const infoItemStyle = {
@@ -71,25 +71,28 @@
 //     gap: '1rem',
 //     marginBottom: '2rem',
 //     padding: '1.5rem',
-//     background: 'rgba(255, 255, 255, 0.1)',
+//     background: 'rgba(45, 45, 45, 0.6)',
 //     backdropFilter: 'blur(10px)',
-//     border: '1px solid rgba(255, 255, 255, 0.2)',
+//     border: '1px solid rgba(255, 255, 255, 0.1)',
 //     borderRadius: '12px',
+//     transition: 'all 0.3s ease',
+//     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
 //   };
 
 //   const iconStyle = {
 //     fontSize: '1.5rem',
-//     color: '#667eea',
+//     color: '#a3a3a3',
 //     marginTop: '0.25rem',
 //     flexShrink: 0,
 //   };
 
 //   const formStyle = {
-//     background: 'rgba(255, 255, 255, 0.1)',
+//     background: 'rgba(45, 45, 45, 0.6)',
 //     backdropFilter: 'blur(10px)',
-//     border: '1px solid rgba(255, 255, 255, 0.2)',
+//     border: '1px solid rgba(255, 255, 255, 0.1)',
 //     borderRadius: '16px',
 //     padding: '2rem',
+//     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
 //   };
 
 //   const formGroupStyle = {
@@ -99,17 +102,17 @@
 //   const labelStyle = {
 //     display: 'block',
 //     marginBottom: '0.5rem',
-//     color: 'white',
+//     color: '#e5e5e5',
 //     fontWeight: '500',
 //   };
 
 //   const inputStyle = {
 //     width: '100%',
 //     padding: '12px 16px',
-//     background: 'rgba(255, 255, 255, 0.1)',
-//     border: '1px solid rgba(255, 255, 255, 0.3)',
+//     background: 'rgba(26, 26, 26, 0.8)',
+//     border: '1px solid rgba(255, 255, 255, 0.1)',
 //     borderRadius: '8px',
-//     color: 'white',
+//     color: '#e5e5e5',
 //     fontSize: '14px',
 //     transition: 'all 0.3s ease',
 //   };
@@ -123,14 +126,15 @@
 //   const buttonStyle = {
 //     width: '100%',
 //     padding: '15px',
-//     background: 'linear-gradient(45deg, #667eea, #764ba2)',
+//     background: 'linear-gradient(135deg, #e5e5e5, #b8b8b8)',
 //     border: 'none',
 //     borderRadius: '8px',
-//     color: 'white',
+//     color: '#1a1a1a',
 //     fontSize: '16px',
 //     fontWeight: '600',
 //     cursor: 'pointer',
 //     transition: 'all 0.3s ease',
+//     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
 //   };
 
 //   const socialLinksStyle = {
@@ -145,10 +149,10 @@
 //     justifyContent: 'center',
 //     width: '50px',
 //     height: '50px',
-//     background: 'rgba(255, 255, 255, 0.1)',
-//     border: '1px solid rgba(255, 255, 255, 0.3)',
+//     background: 'rgba(45, 45, 45, 0.6)',
+//     border: '1px solid rgba(255, 255, 255, 0.1)',
 //     borderRadius: '50%',
-//     color: 'white',
+//     color: '#b0b0b0',
 //     fontSize: '1.2rem',
 //     textDecoration: 'none',
 //     transition: 'all 0.3s ease',
@@ -260,29 +264,68 @@
 //             viewport={{ once: true }}
 //           >
 //             <div style={contactInfoStyle}>
-//               <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem' }}>Contact Information</h3>
+//               <h3 style={{ fontSize: '1.5rem', marginBottom: '2rem', color: '#e5e5e5' }}>Contact Information</h3>
               
-//               <div style={infoItemStyle} className="info-item">
+//               <div 
+//                 style={infoItemStyle} 
+//                 className="info-item"
+//                 onMouseEnter={(e) => {
+//                   e.currentTarget.style.background = 'rgba(58, 58, 58, 0.7)';
+//                   e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+//                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
+//                 }}
+//                 onMouseLeave={(e) => {
+//                   e.currentTarget.style.background = 'rgba(45, 45, 45, 0.6)';
+//                   e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+//                   e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
+//                 }}
+//               >
 //                 <FaPhone style={iconStyle} className="info-icon" />
 //                 <div>
-//                   <h4 style={{ marginBottom: '0.5rem' }}>Phone</h4>
-//                   <p style={{ opacity: 0.8, margin: 0 }}>+91 75586 98796</p>
+//                   <h4 style={{ marginBottom: '0.5rem', color: '#e5e5e5' }}>Phone</h4>
+//                   <p style={{ color: '#b0b0b0', margin: 0 }}>+91 75586 98796</p>
 //                 </div>
 //               </div>
 
-//               <div style={infoItemStyle} className="info-item">
+//               <div 
+//                 style={infoItemStyle} 
+//                 className="info-item"
+//                 onMouseEnter={(e) => {
+//                   e.currentTarget.style.background = 'rgba(58, 58, 58, 0.7)';
+//                   e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+//                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
+//                 }}
+//                 onMouseLeave={(e) => {
+//                   e.currentTarget.style.background = 'rgba(45, 45, 45, 0.6)';
+//                   e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+//                   e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
+//                 }}
+//               >
 //                 <FaEnvelope style={iconStyle} className="info-icon" />
 //                 <div>
-//                   <h4 style={{ marginBottom: '0.5rem' }}>Email</h4>
-//                   <p style={{ opacity: 0.8, margin: 0 }}>nikhil@madhura.net</p>
+//                   <h4 style={{ marginBottom: '0.5rem', color: '#e5e5e5' }}>Email</h4>
+//                   <p style={{ color: '#b0b0b0', margin: 0 }}>nikhil@madhura.net</p>
 //                 </div>
 //               </div>
 
-//               <div style={infoItemStyle} className="info-item">
+//               <div 
+//                 style={infoItemStyle} 
+//                 className="info-item"
+//                 onMouseEnter={(e) => {
+//                   e.currentTarget.style.background = 'rgba(58, 58, 58, 0.7)';
+//                   e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+//                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
+//                 }}
+//                 onMouseLeave={(e) => {
+//                   e.currentTarget.style.background = 'rgba(45, 45, 45, 0.6)';
+//                   e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+//                   e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
+//                 }}
+//               >
 //                 <FaMapMarkerAlt style={iconStyle} className="info-icon" />
 //                 <div>
-//                   <h4 style={{ marginBottom: '0.5rem' }}>Address</h4>
-//                   <p style={{ opacity: 0.8, margin: 0, lineHeight: '1.5' }}>
+//                   <h4 style={{ marginBottom: '0.5rem', color: '#e5e5e5' }}>Address</h4>
+//                   <p style={{ color: '#b0b0b0', margin: 0, lineHeight: '1.5' }}>
 //                     A-202, ICC Trade Towers<br />
 //                     Senapati Bapat Road,<br />
 //                     Pune, Maharashtra 411016
@@ -291,30 +334,20 @@
 //               </div>
 
 //               <div style={socialLinksStyle} className="social-links">
-//                 {/* <a 
-//                   href="#" 
-//                   style={socialLinkStyle}
-//                   onMouseEnter={(e) => {
-//                     e.target.style.background = '#25D366';
-//                     e.target.style.transform = 'translateY(-3px)';
-//                   }}
-//                   onMouseLeave={(e) => {
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-//                     e.target.style.transform = 'translateY(0)';
-//                   }}
-//                 >
-//                   <FaWhatsapp />
-//                 </a> */}
 //                 <a 
 //                   href="https://www.linkedin.com/company/madhura-power-technologies-pvt-ltd-global/" 
 //                   style={socialLinkStyle}
 //                   onMouseEnter={(e) => {
-//                     e.target.style.background = '#0077B5';
+//                     e.target.style.background = 'linear-gradient(135deg, #e5e5e5, #b8b8b8)';
+//                     e.target.style.color = '#1a1a1a';
 //                     e.target.style.transform = 'translateY(-3px)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
 //                   }}
 //                   onMouseLeave={(e) => {
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.background = 'rgba(45, 45, 45, 0.6)';
+//                     e.target.style.color = '#b0b0b0';
 //                     e.target.style.transform = 'translateY(0)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
 //                   }}
 //                 >
 //                   <FaLinkedin />
@@ -323,12 +356,16 @@
 //                   href="https://www.instagram.com/madhura.ev/" 
 //                   style={socialLinkStyle}
 //                   onMouseEnter={(e) => {
-//                     e.target.style.background = 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)';
+//                     e.target.style.background = 'linear-gradient(135deg, #e5e5e5, #b8b8b8)';
+//                     e.target.style.color = '#1a1a1a';
 //                     e.target.style.transform = 'translateY(-3px)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
 //                   }}
 //                   onMouseLeave={(e) => {
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.background = 'rgba(45, 45, 45, 0.6)';
+//                     e.target.style.color = '#b0b0b0';
 //                     e.target.style.transform = 'translateY(0)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
 //                   }}
 //                 >
 //                   <FaInstagram />
@@ -337,7 +374,7 @@
 //             </div>
 
 //             <form style={formStyle} className="contact-form" onSubmit={handleSubmit}>
-//               <h3 style={{ color: 'white', marginBottom: '1.5rem', fontSize: '1.5rem' }}>Send us a Message</h3>
+//               <h3 style={{ color: '#e5e5e5', marginBottom: '1.5rem', fontSize: '1.5rem' }}>Send us a Message</h3>
               
 //               <div style={formGroupStyle}>
 //                 <label style={labelStyle} htmlFor="name">Full Name *</label>
@@ -352,12 +389,12 @@
 //                   required
 //                   placeholder="Enter your full name"
 //                   onFocus={(e) => {
-//                     e.target.style.borderColor = '#667eea';
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+//                     e.target.style.boxShadow = '0 0 0 2px rgba(163, 163, 163, 0.2)';
 //                   }}
 //                   onBlur={(e) => {
-//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.boxShadow = 'none';
 //                   }}
 //                 />
 //               </div>
@@ -375,12 +412,12 @@
 //                   required
 //                   placeholder="Enter your email address"
 //                   onFocus={(e) => {
-//                     e.target.style.borderColor = '#667eea';
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+//                     e.target.style.boxShadow = '0 0 0 2px rgba(163, 163, 163, 0.2)';
 //                   }}
 //                   onBlur={(e) => {
-//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.boxShadow = 'none';
 //                   }}
 //                 />
 //               </div>
@@ -397,12 +434,12 @@
 //                   className="form-input"
 //                   placeholder="Enter your phone number"
 //                   onFocus={(e) => {
-//                     e.target.style.borderColor = '#667eea';
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+//                     e.target.style.boxShadow = '0 0 0 2px rgba(163, 163, 163, 0.2)';
 //                   }}
 //                   onBlur={(e) => {
-//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.boxShadow = 'none';
 //                   }}
 //                 />
 //               </div>
@@ -420,12 +457,12 @@
 //                   required
 //                   placeholder="What's this about?"
 //                   onFocus={(e) => {
-//                     e.target.style.borderColor = '#667eea';
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+//                     e.target.style.boxShadow = '0 0 0 2px rgba(163, 163, 163, 0.2)';
 //                   }}
 //                   onBlur={(e) => {
-//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.boxShadow = 'none';
 //                   }}
 //                 />
 //               </div>
@@ -442,12 +479,12 @@
 //                   required
 //                   placeholder="Tell us about your smart home requirements..."
 //                   onFocus={(e) => {
-//                     e.target.style.borderColor = '#667eea';
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+//                     e.target.style.boxShadow = '0 0 0 2px rgba(163, 163, 163, 0.2)';
 //                   }}
 //                   onBlur={(e) => {
-//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-//                     e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+//                     e.target.style.boxShadow = 'none';
 //                   }}
 //                 />
 //               </div>
@@ -456,13 +493,15 @@
 //                 type="submit"
 //                 style={buttonStyle}
 //                 className="form-button"
-//                                 onMouseEnter={(e) => {
+//                 onMouseEnter={(e) => {
 //                   e.target.style.transform = 'translateY(-2px)';
-//                   e.target.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)';
+//                   e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
+//                   e.target.style.background = 'linear-gradient(135deg, #f5f5f5, #c8c8c8)';
 //                 }}
 //                 onMouseLeave={(e) => {
 //                   e.target.style.transform = 'translateY(0)';
-//                   e.target.style.boxShadow = 'none';
+//                   e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
+//                   e.target.style.background = 'linear-gradient(135deg, #e5e5e5, #b8b8b8)';
 //                 }}
 //               >
 //                 Send Message
@@ -479,13 +518,10 @@
 
 
 
-
-
-
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -496,17 +532,78 @@ const ContactForm = () => {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+
+  // ⚠️ REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS
+  const EMAILJS_SERVICE_ID = 'service_7ejmbed';
+  const EMAILJS_TEMPLATE_ID = 'template_ygvdeqz';
+  const EMAILJS_PUBLIC_KEY = 'zSZdQSxi8M9Jvjfrk';
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear status message when user starts typing
+    if (submitStatus.message) {
+      setSubmitStatus({ type: '', message: '' });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
+    setIsSubmitting(true);
+    setSubmitStatus({ type: '', message: '' });
+
+    try {
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      console.log('Email sent successfully:', result);
+      
+      // Show success message
+      setSubmitStatus({
+        type: 'success',
+        message: 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.'
+      });
+
+      // Clear form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus({ type: '', message: '' });
+      }, 5000);
+
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      
+      // Show error message
+      setSubmitStatus({
+        type: 'error',
+        message: 'Oops! Something went wrong. Please try again or contact us directly at nikhil@madhura.net'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const sectionStyle = {
@@ -611,15 +708,42 @@ const ContactForm = () => {
   const buttonStyle = {
     width: '100%',
     padding: '15px',
-    background: 'linear-gradient(135deg, #e5e5e5, #b8b8b8)',
+    background: isSubmitting 
+      ? 'linear-gradient(135deg, #b8b8b8, #8a8a8a)' 
+      : 'linear-gradient(135deg, #e5e5e5, #b8b8b8)',
     border: 'none',
     borderRadius: '8px',
     color: '#1a1a1a',
     fontSize: '16px',
     fontWeight: '600',
-    cursor: 'pointer',
+    cursor: isSubmitting ? 'not-allowed' : 'pointer',
     transition: 'all 0.3s ease',
     boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+    opacity: isSubmitting ? 0.7 : 1,
+  };
+
+  const statusMessageStyle = {
+    padding: '12px 16px',
+    borderRadius: '8px',
+    marginBottom: '1.5rem',
+    fontSize: '14px',
+    fontWeight: '500',
+    textAlign: 'center',
+    animation: 'slideDown 0.3s ease',
+  };
+
+  const successMessageStyle = {
+    ...statusMessageStyle,
+    background: 'rgba(34, 197, 94, 0.1)',
+    border: '1px solid rgba(34, 197, 94, 0.3)',
+    color: '#4ade80',
+  };
+
+  const errorMessageStyle = {
+    ...statusMessageStyle,
+    background: 'rgba(239, 68, 68, 0.1)',
+    border: '1px solid rgba(239, 68, 68, 0.3)',
+    color: '#f87171',
   };
 
   const socialLinksStyle = {
@@ -645,6 +769,17 @@ const ContactForm = () => {
 
   // Responsive styles
   const responsiveStyles = `
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 768px) {
       .contact-content {
         grid-template-columns: 1fr !important;
@@ -821,6 +956,8 @@ const ContactForm = () => {
               <div style={socialLinksStyle} className="social-links">
                 <a 
                   href="https://www.linkedin.com/company/madhura-power-technologies-pvt-ltd-global/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={socialLinkStyle}
                   onMouseEnter={(e) => {
                     e.target.style.background = 'linear-gradient(135deg, #e5e5e5, #b8b8b8)';
@@ -839,6 +976,8 @@ const ContactForm = () => {
                 </a>
                 <a 
                   href="https://www.instagram.com/madhura.ev/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={socialLinkStyle}
                   onMouseEnter={(e) => {
                     e.target.style.background = 'linear-gradient(135deg, #e5e5e5, #b8b8b8)';
@@ -861,6 +1000,13 @@ const ContactForm = () => {
             <form style={formStyle} className="contact-form" onSubmit={handleSubmit}>
               <h3 style={{ color: '#e5e5e5', marginBottom: '1.5rem', fontSize: '1.5rem' }}>Send us a Message</h3>
               
+              {/* Status Messages */}
+              {submitStatus.message && (
+                <div style={submitStatus.type === 'success' ? successMessageStyle : errorMessageStyle}>
+                  {submitStatus.message}
+                </div>
+              )}
+              
               <div style={formGroupStyle}>
                 <label style={labelStyle} htmlFor="name">Full Name *</label>
                 <input
@@ -872,6 +1018,7 @@ const ContactForm = () => {
                   style={inputStyle}
                   className="form-input"
                   required
+                  disabled={isSubmitting}
                   placeholder="Enter your full name"
                   onFocus={(e) => {
                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
@@ -895,6 +1042,7 @@ const ContactForm = () => {
                   style={inputStyle}
                   className="form-input"
                   required
+                  disabled={isSubmitting}
                   placeholder="Enter your email address"
                   onFocus={(e) => {
                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
@@ -917,6 +1065,7 @@ const ContactForm = () => {
                   onChange={handleChange}
                   style={inputStyle}
                   className="form-input"
+                  disabled={isSubmitting}
                   placeholder="Enter your phone number"
                   onFocus={(e) => {
                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
@@ -940,6 +1089,7 @@ const ContactForm = () => {
                   style={inputStyle}
                   className="form-input"
                   required
+                  disabled={isSubmitting}
                   placeholder="What's this about?"
                   onFocus={(e) => {
                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
@@ -962,6 +1112,7 @@ const ContactForm = () => {
                   style={textareaStyle}
                   className="form-textarea"
                   required
+                  disabled={isSubmitting}
                   placeholder="Tell us about your smart home requirements..."
                   onFocus={(e) => {
                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
@@ -978,18 +1129,23 @@ const ContactForm = () => {
                 type="submit"
                 style={buttonStyle}
                 className="form-button"
+                disabled={isSubmitting}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
-                  e.target.style.background = 'linear-gradient(135deg, #f5f5f5, #c8c8c8)';
+                  if (!isSubmitting) {
+                    e.target.style.transform = 'translateY(-2px)';
+                    e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
+                    e.target.style.background = 'linear-gradient(135deg, #f5f5f5, #c8c8c8)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
-                  e.target.style.background = 'linear-gradient(135deg, #e5e5e5, #b8b8b8)';
+                  if (!isSubmitting) {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
+                    e.target.style.background = 'linear-gradient(135deg, #e5e5e5, #b8b8b8)';
+                  }
                 }}
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </motion.div>

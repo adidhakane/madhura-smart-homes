@@ -446,6 +446,7 @@ const FeaturesSection = () => {
   const sectionStyle = {
     padding: '100px 0',
     background: '#f5f5f5',
+    // background: '#343434ff'
   };
 
   const titleStyle = {
