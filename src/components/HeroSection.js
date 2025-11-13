@@ -190,11 +190,12 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaPlay, FaArrowRight } from 'react-icons/fa';
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState(1);
 
   const heroSlides = [
     {
@@ -219,6 +220,7 @@ const HeroSection = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      setDirection(1);
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 6000);
     return () => clearInterval(interval);
@@ -233,16 +235,19 @@ const HeroSection = () => {
     background: '#1a1a1a',
   };
 
-  const backgroundStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundImage: `linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.85)), url(${heroSlides[currentSlide].image})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    transition: 'all 1s ease-in-out',
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    }),
+    center: {
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => ({
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    })
   };
 
   const contentStyle = {
@@ -314,41 +319,67 @@ const HeroSection = () => {
 
   return (
     <section id="home" style={sectionStyle}>
-      <div style={backgroundStyle} />
-      
-      <div className="container">
+      <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={currentSlide}
-          style={contentStyle}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 style={titleStyle}>
-            {heroSlides[currentSlide].title}
-          </h1>
-          <p style={subtitleStyle}>
-            {heroSlides[currentSlide].subtitle}
-          </p>
-          <div style={ctaContainerStyle}>
-            <button
-              style={primaryButtonStyle}
-              onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-3px)';
-                e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
-                e.target.style.background = 'linear-gradient(135deg, #f5f5f5, #c8c8c8)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
-                e.target.style.background = 'linear-gradient(135deg, #e5e5e5, #b8b8b8)';
-              }}
-            >
-              {heroSlides[currentSlide].cta}
-              <FaArrowRight />
-            </button>
-          </div>
-        </motion.div>
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.4 }
+          }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundImage: `linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.85)), url(${heroSlides[currentSlide].image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+      </AnimatePresence>
+      
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`content-${currentSlide}`}
+            style={contentStyle}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 style={titleStyle}>
+              {heroSlides[currentSlide].title}
+            </h1>
+            <p style={subtitleStyle}>
+              {heroSlides[currentSlide].subtitle}
+            </p>
+            <div style={ctaContainerStyle}>
+              <button
+                style={primaryButtonStyle}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-3px)';
+                  e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
+                  e.target.style.background = 'linear-gradient(135deg, #f5f5f5, #c8c8c8)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
+                  e.target.style.background = 'linear-gradient(135deg, #e5e5e5, #b8b8b8)';
+                }}
+              >
+                {heroSlides[currentSlide].cta}
+                <FaArrowRight />
+              </button>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <div style={slideDots}>
@@ -360,7 +391,10 @@ const HeroSection = () => {
               background: index === currentSlide ? '#e5e5e5' : 'transparent',
               borderColor: index === currentSlide ? '#e5e5e5' : 'rgba(255, 255, 255, 0.4)',
             }}
-            onClick={() => setCurrentSlide(index)}
+            onClick={() => {
+              setDirection(index > currentSlide ? 1 : -1);
+              setCurrentSlide(index);
+            }}
             onMouseEnter={(e) => {
               e.target.style.transform = 'scale(1.2)';
             }}

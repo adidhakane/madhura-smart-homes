@@ -353,6 +353,7 @@ import { FaHome, FaShieldAlt, FaLightbulb, FaMobile, FaLeaf, FaCog, FaChevronLef
 const FeaturesSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [direction, setDirection] = useState(1);
 
   // Check if device is mobile
   useEffect(() => {
@@ -418,6 +419,7 @@ const FeaturesSection = () => {
   // Auto-advance slideshow
   useEffect(() => {
     const interval = setInterval(() => {
+      setDirection(1);
       setCurrentSlide((prev) => (prev + 1) % getTotalSlides());
     }, 8000);
 
@@ -426,10 +428,12 @@ const FeaturesSection = () => {
 
   // Manual navigation functions
   const nextSlide = () => {
+    setDirection(1);
     setCurrentSlide((prev) => (prev + 1) % getTotalSlides());
   };
 
   const prevSlide = () => {
+    setDirection(-1);
     setCurrentSlide((prev) => (prev - 1 + getTotalSlides()) % getTotalSlides());
   };
 
@@ -632,14 +636,18 @@ const FeaturesSection = () => {
             <FaChevronRight />
           </button>
 
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentSlide}
+              custom={direction}
               style={gridStyle}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
+              initial={{ opacity: 0, x: direction > 0 ? 300 : -300 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction < 0 ? 300 : -300 }}
+              transition={{ 
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.3 }
+              }}
             >
               {getCurrentFeatures().map((feature, index) => (
                 <motion.div
@@ -683,7 +691,10 @@ const FeaturesSection = () => {
               <div
                 key={slideIndex}
                 style={slideIndex === currentSlide ? activeDotStyle : inactiveDotStyle}
-                onClick={() => setCurrentSlide(slideIndex)}
+                onClick={() => {
+                  setDirection(slideIndex > currentSlide ? 1 : -1);
+                  setCurrentSlide(slideIndex);
+                }}
                 onMouseEnter={(e) => {
                   if (slideIndex !== currentSlide) {
                     e.target.style.borderColor = '#5a5a5a';

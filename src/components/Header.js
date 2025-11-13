@@ -204,13 +204,28 @@ const Header = () => {
     padding: '0 20px',
   };
 
-  const logoStyle = {
+  const logoContainerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    cursor: 'pointer',
+  };
+
+  const logoImageStyle = {
+    height: scrolled ? '40px' : '50px',
+    width: 'auto',
+    transition: 'all 0.3s ease',
+    backgroundColor: '#ffffff',
+    padding: '5px 10px',
+    borderRadius: '8px',
+  };
+
+  const logoTextStyle = {
     fontSize: '1.8rem',
     fontWeight: '700',
     background: 'linear-gradient(135deg, #e5e5e5, #a3a3a3)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
-    cursor: 'pointer',
     transition: 'all 0.3s ease',
   };
 
@@ -250,12 +265,21 @@ const Header = () => {
       >
         <nav style={navStyle}>
           <div 
-            style={logoStyle} 
+            style={logoContainerStyle} 
             onClick={() => handleNavClick('home')}
-            onMouseEnter={(e) => e.target.style.filter = 'brightness(1.3)'}
-            onMouseLeave={(e) => e.target.style.filter = 'brightness(1)'}
           >
-            Madhura Smart Homes
+            <img 
+              src="/madhura-logo.png" 
+              alt="Madhura Smart Homes" 
+              style={logoImageStyle}
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'block';
+              }}
+            />
+            <span style={{ ...logoTextStyle, display: 'none' }}>
+              Madhura Smart Homes
+            </span>
           </div>
           <ul style={navLinksStyle}>
             <li>
