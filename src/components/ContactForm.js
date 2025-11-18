@@ -802,6 +802,23 @@ const ContactForm = () => {
       .info-item {
         padding: 1rem !important;
         margin-bottom: 1.5rem !important;
+        flex-direction: column !important;
+        text-align: center !important;
+        align-items: center !important;
+      }
+      
+      .info-item > div {
+        text-align: center !important;
+      }
+      
+      .info-item h4,
+      .info-item p {
+        text-align: center !important;
+      }
+      
+      .info-icon {
+        align-self: center !important;
+        margin-top: 0 !important;
       }
       
       .social-links {
@@ -837,13 +854,25 @@ const ContactForm = () => {
       }
       
       .info-item {
+        padding: 1rem !important;
         flex-direction: column !important;
         text-align: center !important;
+        align-items: center !important;
         gap: 0.5rem !important;
+      }
+      
+      .info-item > div {
+        text-align: center !important;
+      }
+      
+      .info-item h4,
+      .info-item p {
+        text-align: center !important;
       }
       
       .info-icon {
         align-self: center !important;
+        margin-top: 0 !important;
       }
     }
   `;

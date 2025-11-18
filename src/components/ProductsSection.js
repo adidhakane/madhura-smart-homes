@@ -276,10 +276,20 @@ const ProductsSection = ({ onProductClick }) => {
 
   const filteredProducts = products.filter(product => product.category === selectedCategory).slice(0, 4);
 
+  // Mobile detection - must be declared first
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
   const sectionStyle = {
     padding: '100px 0',
     background: '#f5f5f5',
     // background: '#343434ff'
+  };
+
+  const responsiveSectionStyle = {
+    ...sectionStyle,
+    ...(isMobile && {
+      padding: '60px 0 40px 0',
+    })
   };
 
   const titleStyle = {
@@ -288,6 +298,14 @@ const ProductsSection = ({ onProductClick }) => {
     fontWeight: '700',
     marginBottom: '1rem',
     color: '#2d2d2d',
+  };
+
+  const responsiveTitleStyle = {
+    ...titleStyle,
+    ...(isMobile && {
+      fontSize: '1.75rem',
+      marginBottom: '0.75rem',
+    })
   };
 
   const subtitleStyle = {
@@ -299,31 +317,63 @@ const ProductsSection = ({ onProductClick }) => {
     margin: '0 auto 3rem auto',
   };
 
+  const responsiveSubtitleStyle = {
+    ...subtitleStyle,
+    ...(isMobile && {
+      fontSize: '0.9rem',
+      marginBottom: '2rem',
+      margin: '0 auto 2rem auto',
+    })
+  };
+
   const categoryStyle = {
     display: 'flex',
-    gap: '1rem',
+    gap: '0.75rem',
     marginBottom: '3rem',
-    flexWrap: 'wrap',
+    overflowX: 'auto',
+    paddingBottom: '0.5rem',
+    scrollbarWidth: 'thin',
+    WebkitOverflowScrolling: 'touch',
     justifyContent: 'center',
+    flexWrap: 'wrap',
+  };
+
+  const responsiveCategoryStyle = {
+    ...categoryStyle,
+    ...(isMobile && {
+      marginBottom: '1.5rem',
+      gap: '0.5rem',
+      justifyContent: 'flex-start',
+      flexWrap: 'nowrap',
+    })
   };
 
   const categoryButtonStyle = {
-    padding: '10px 20px',
-    borderRadius: '25px',
+    padding: '8px 16px',
+    borderRadius: '20px',
     border: '1px solid #e0e0e0',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
-    fontSize: '14px',
+    fontSize: '13px',
     fontWeight: '500',
     whiteSpace: 'nowrap',
+    flexShrink: 0,
   };
 
   const gridStyle = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 320px))',
-    gap: '2rem',
+    gap: '1.5rem',
     marginBottom: '3rem',
     justifyContent: 'center',
+  };
+  
+  const responsiveGridStyle = {
+    ...gridStyle,
+    ...(isMobile && {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gap: '0.75rem',
+    })
   };
 
   const productCardStyle = {
@@ -337,6 +387,14 @@ const ProductsSection = ({ onProductClick }) => {
     width: '100%',
   };
 
+  const responsiveCardStyle = {
+    ...productCardStyle,
+    ...(isMobile && {
+      borderRadius: '12px',
+      maxWidth: '100%',
+    })
+  };
+
   const productImageStyle = {
     width: '100%',
     height: '250px',
@@ -345,8 +403,23 @@ const ProductsSection = ({ onProductClick }) => {
     padding: '20px',
   };
 
+  const responsiveImageStyle = {
+    ...productImageStyle,
+    ...(isMobile && {
+      height: '140px',
+      padding: '10px',
+    })
+  };
+
   const productInfoStyle = {
     padding: '1.5rem',
+  };
+
+  const responsiveInfoStyle = {
+    ...productInfoStyle,
+    ...(isMobile && {
+      padding: '0.75rem',
+    })
   };
 
   const productNameStyle = {
@@ -355,6 +428,14 @@ const ProductsSection = ({ onProductClick }) => {
     color: '#e5e5e5',
     marginBottom: '1rem',
     lineHeight: '1.3',
+  };
+
+  const responsiveNameStyle = {
+    ...productNameStyle,
+    ...(isMobile && {
+      fontSize: '0.85rem',
+      marginBottom: '0.5rem',
+    })
   };
 
   const descriptionStyle = {
@@ -368,9 +449,26 @@ const ProductsSection = ({ onProductClick }) => {
     overflow: 'hidden',
   };
 
+  const responsiveDescriptionStyle = {
+    ...descriptionStyle,
+    ...(isMobile && {
+      fontSize: '0.75rem',
+      marginBottom: '0.75rem',
+      WebkitLineClamp: 1,
+      lineHeight: '1.3',
+    })
+  };
+
   const actionButtonsStyle = {
     display: 'flex',
     gap: '0.5rem',
+  };
+
+  const responsiveButtonsStyle = {
+    ...actionButtonsStyle,
+    ...(isMobile && {
+      gap: '0.25rem',
+    })
   };
 
   const viewAllButtonStyle = {
@@ -389,10 +487,10 @@ const ProductsSection = ({ onProductClick }) => {
   };
 
   return (
-    <section id="products" style={sectionStyle}>
+    <section id="products" style={responsiveSectionStyle}>
       <div className="container">
         <motion.h2 
-          style={titleStyle}
+          style={responsiveTitleStyle}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -402,7 +500,7 @@ const ProductsSection = ({ onProductClick }) => {
         </motion.h2>
         
         <motion.p 
-          style={subtitleStyle}
+          style={responsiveSubtitleStyle}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -412,7 +510,7 @@ const ProductsSection = ({ onProductClick }) => {
         </motion.p>
 
         <motion.div 
-          style={categoryStyle}
+          style={responsiveCategoryStyle}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -449,13 +547,13 @@ const ProductsSection = ({ onProductClick }) => {
         </motion.div>
 
         <motion.div 
-          style={gridStyle}
+          style={responsiveGridStyle}
           layout
         >
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
-              style={productCardStyle}
+              style={responsiveCardStyle}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
@@ -468,25 +566,26 @@ const ProductsSection = ({ onProductClick }) => {
               }}
               onClick={() => onProductClick && onProductClick(product)}
             >
-              <img src={product.image} alt={product.name} style={productImageStyle} />
-              <div style={productInfoStyle}>
-                <h3 style={productNameStyle}>{product.name}</h3>
-                <p style={descriptionStyle}>{product.description}</p>
-                <div style={actionButtonsStyle}>
+              <img src={product.image} alt={product.name} style={responsiveImageStyle} />
+              <div style={responsiveInfoStyle}>
+                <h3 style={responsiveNameStyle}>{product.name}</h3>
+                <p style={responsiveDescriptionStyle}>{product.description}</p>
+                <div style={responsiveButtonsStyle}>
                   <button 
                     className="btn-primary" 
                     style={{ 
                       flex: 1, 
-                      fontSize: '13px', 
-                      padding: '8px 12px',
+                      fontSize: isMobile ? '10px' : '13px', 
+                      padding: isMobile ? '6px 8px' : '8px 12px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '0.5rem'
+                      gap: '0.3rem'
                     }}
                   >
                     <FaEye />
-                    View Details
+                    {!isMobile && 'View Details'}
+                    {isMobile && 'View'}
                   </button>
                   <button 
                     style={{
@@ -494,7 +593,7 @@ const ProductsSection = ({ onProductClick }) => {
                       border: '1px solid #e0e0e0',
                       borderRadius: '6px',
                       color: '#e5e5e5',
-                      padding: '8px 12px',
+                      padding: isMobile ? '6px 8px' : '8px 12px',
                       cursor: 'pointer',
                       transition: 'all 0.3s ease',
                     }}
