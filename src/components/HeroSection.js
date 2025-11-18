@@ -237,7 +237,7 @@ const HeroSection = () => {
 
   const slideVariants = {
     enter: (direction) => ({
-      x: direction > 0 ? 1000 : -1000,
+      x: direction > 0 ? 800 : -800,
       opacity: 0
     }),
     center: {
@@ -245,7 +245,7 @@ const HeroSection = () => {
       opacity: 1
     },
     exit: (direction) => ({
-      x: direction < 0 ? 1000 : -1000,
+      x: direction < 0 ? 800 : -800,
       opacity: 0
     })
   };
@@ -319,16 +319,17 @@ const HeroSection = () => {
 
   return (
     <section id="home" style={sectionStyle}>
-      <AnimatePresence initial={false}>
+      <AnimatePresence initial={false} mode="sync">
         <motion.div
           key={currentSlide}
           custom={direction}
           variants={slideVariants}
           initial="enter"
           animate="center"
+          exit="exit"
           transition={{
-            x: { type: "tween", duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] },
-            opacity: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }
+            x: { type: "tween", duration: 1.2, ease: "easeInOut" },
+            opacity: { duration: 1.2, ease: "easeInOut" }
           }}
           style={{
             position: 'absolute',
@@ -350,7 +351,7 @@ const HeroSection = () => {
           style={contentStyle}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeInOut" }}
         >
           <h1 style={titleStyle}>
             {heroSlides[currentSlide].title}

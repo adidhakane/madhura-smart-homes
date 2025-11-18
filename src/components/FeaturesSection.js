@@ -288,16 +288,17 @@ const FeaturesSection = () => {
             <FaChevronRight />
           </button>
 
-          <AnimatePresence initial={false} mode="popLayout">
+          <AnimatePresence initial={false} mode="sync">
             <motion.div
               key={currentSlide}
               custom={direction}
               style={{ ...gridStyle, willChange: 'transform, opacity' }}
-              initial={{ opacity: 0, x: direction > 0 ? 300 : -300 }}
+              initial={{ opacity: 0, x: direction > 0 ? 400 : -400 }}
               animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction > 0 ? -400 : 400 }}
               transition={{ 
-                x: { type: "tween", duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] },
-                opacity: { duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] }
+                x: { type: "tween", duration: 1, ease: "easeInOut" },
+                opacity: { duration: 1, ease: "easeInOut" }
               }}
             >
               {getCurrentFeatures().map((feature, index) => (
@@ -306,7 +307,7 @@ const FeaturesSection = () => {
                   style={{ ...cardStyle, willChange: 'transform, opacity' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1, ease: [0.43, 0.13, 0.23, 0.96] }}
+                  transition={{ duration: 0.8, delay: 0.3 + (index * 0.15), ease: "easeInOut" }}
                   whileHover={{ 
                     scale: 1.02,
                     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)',
