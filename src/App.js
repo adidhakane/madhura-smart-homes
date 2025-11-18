@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
+import LifestyleSection from './components/LifestyleSection';
 import FeaturesSection from './components/FeaturesSection';
 import ProductsSection from './components/ProductsSection';
 import StatsSection from './components/StatsSection';
@@ -37,6 +38,7 @@ function App() {
       <Header />
       <main>
         <HeroSection />
+        <LifestyleSection />
         <FeaturesSection />
         <ProductsSection onProductClick={handleProductClick} />
         {/* <StatsSection /> */}

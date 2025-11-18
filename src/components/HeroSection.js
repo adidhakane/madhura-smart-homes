@@ -319,17 +319,16 @@ const HeroSection = () => {
 
   return (
     <section id="home" style={sectionStyle}>
-      <AnimatePresence initial={false} custom={direction}>
+      <AnimatePresence initial={false}>
         <motion.div
           key={currentSlide}
           custom={direction}
           variants={slideVariants}
           initial="enter"
           animate="center"
-          exit="exit"
           transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.4 }
+            x: { type: "tween", duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] },
+            opacity: { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }
           }}
           style={{
             position: 'absolute',
@@ -340,46 +339,44 @@ const HeroSection = () => {
             backgroundImage: `linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.85)), url(${heroSlides[currentSlide].image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
+            willChange: 'transform, opacity',
           }}
         />
       </AnimatePresence>
       
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`content-${currentSlide}`}
-            style={contentStyle}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 style={titleStyle}>
-              {heroSlides[currentSlide].title}
-            </h1>
-            <p style={subtitleStyle}>
-              {heroSlides[currentSlide].subtitle}
-            </p>
-            <div style={ctaContainerStyle}>
-              <button
-                style={primaryButtonStyle}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-3px)';
-                  e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
-                  e.target.style.background = 'linear-gradient(135deg, #f5f5f5, #c8c8c8)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
-                  e.target.style.background = 'linear-gradient(135deg, #e5e5e5, #b8b8b8)';
-                }}
-              >
-                {heroSlides[currentSlide].cta}
-                <FaArrowRight />
-              </button>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+        <motion.div
+          key={`content-${currentSlide}`}
+          style={contentStyle}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
+        >
+          <h1 style={titleStyle}>
+            {heroSlides[currentSlide].title}
+          </h1>
+          <p style={subtitleStyle}>
+            {heroSlides[currentSlide].subtitle}
+          </p>
+          <div style={ctaContainerStyle}>
+            <button
+              style={primaryButtonStyle}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'translateY(-3px)';
+                e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
+                e.target.style.background = 'linear-gradient(135deg, #f5f5f5, #c8c8c8)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
+                e.target.style.background = 'linear-gradient(135deg, #e5e5e5, #b8b8b8)';
+              }}
+            >
+              {heroSlides[currentSlide].cta}
+              <FaArrowRight />
+            </button>
+          </div>
+        </motion.div>
       </div>
 
       <div style={slideDots}>

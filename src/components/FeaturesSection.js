@@ -244,9 +244,9 @@ const FeaturesSection = () => {
       <div className="container">
         <motion.h2 
           style={titleStyle}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
           viewport={{ once: true }}
         >
           Why Choose Madhura Smart Homes?
@@ -288,31 +288,31 @@ const FeaturesSection = () => {
             <FaChevronRight />
           </button>
 
-          <AnimatePresence mode="wait" custom={direction}>
+          <AnimatePresence initial={false} mode="popLayout">
             <motion.div
               key={currentSlide}
               custom={direction}
-              style={gridStyle}
+              style={{ ...gridStyle, willChange: 'transform, opacity' }}
               initial={{ opacity: 0, x: direction > 0 ? 300 : -300 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction < 0 ? 300 : -300 }}
               transition={{ 
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.3 }
+                x: { type: "tween", duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] },
+                opacity: { duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] }
               }}
             >
               {getCurrentFeatures().map((feature, index) => (
                 <motion.div
                   key={`${currentSlide}-${index}`}
-                  style={cardStyle}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  style={{ ...cardStyle, willChange: 'transform, opacity' }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1, ease: [0.43, 0.13, 0.23, 0.96] }}
                   whileHover={{ 
-                    y: -10,
+                    scale: 1.02,
                     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)',
                     background: '#e8e8e8',
-                    borderColor: '#5a5a5a'
+                    borderColor: '#5a5a5a',
+                    transition: { duration: 0.2, ease: [0.43, 0.13, 0.23, 0.96] }
                   }}
                 >
                   <img src={feature.image} alt={feature.title} style={imageStyle} />
