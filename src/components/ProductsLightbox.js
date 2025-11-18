@@ -171,8 +171,8 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
 
     const modalStyle = {
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: '3rem',
+      gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+      gap: isMobile ? '1.5rem' : '3rem',
       alignItems: 'start',
     };
 
@@ -182,11 +182,11 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
 
     const detailImageStyle = {
       width: '100%',
-      height: '400px',
+      height: isMobile ? '250px' : '400px',
       objectFit: 'contain',
-      borderRadius: '12px',
+      borderRadius: isMobile ? '8px' : '12px',
       backgroundColor: '#f5f5f5',
-      padding: '30px',
+      padding: isMobile ? '15px' : '30px',
       border: '1px solid #404040',
     };
 
@@ -196,7 +196,7 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
 
     const featureListStyle = {
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+      gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(150px, 1fr))',
       gap: '0.5rem',
       marginTop: '1rem',
       marginBottom: '2rem',
@@ -205,26 +205,28 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
     const featureItemStyle = {
       background: '#3a3a3a',
       color: '#b0b0b0',
-      padding: '0.5rem 1rem',
+      padding: isMobile ? '0.4rem 0.8rem' : '0.5rem 1rem',
       borderRadius: '20px',
-      fontSize: '14px',
+      fontSize: isMobile ? '12px' : '14px',
       textAlign: 'center',
       border: '1px solid #505050',
     };
 
     const specsStyle = {
       background: '#3a3a3a',
-      padding: '1.5rem',
-      borderRadius: '12px',
-      marginTop: '2rem',
+      padding: isMobile ? '1rem' : '1.5rem',
+      borderRadius: isMobile ? '8px' : '12px',
+      marginTop: isMobile ? '1.5rem' : '2rem',
       border: '1px solid #505050',
     };
 
     const specItemStyle = {
       display: 'flex',
       justifyContent: 'space-between',
-      padding: '0.5rem 0',
+      padding: isMobile ? '0.4rem 0' : '0.5rem 0',
       borderBottom: '1px solid #505050',
+      fontSize: isMobile ? '0.85rem' : '1rem',
+      gap: '1rem',
     };
 
     return (
@@ -236,13 +238,14 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
             border: '1px solid #505050',
             borderRadius: '8px',
             color: '#e5e5e5',
-            padding: '8px 16px',
+            padding: isMobile ? '6px 12px' : '8px 16px',
             cursor: 'pointer',
-            marginBottom: '2rem',
+            marginBottom: isMobile ? '1rem' : '2rem',
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
             transition: 'all 0.3s ease',
+            fontSize: isMobile ? '0.9rem' : '1rem',
           }}
           onMouseEnter={(e) => {
             e.target.style.background = '#3a3a3a';
@@ -262,11 +265,11 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
             <img src={product.image} alt={product.name} style={detailImageStyle} />
           </div>
           <div style={detailsStyle}>
-            <h3 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>{product.name}</h3>
-            <p style={{ lineHeight: '1.6', marginBottom: '2rem', color: '#b0b0b0' }}>
+            <h3 style={{ fontSize: isMobile ? '1.5rem' : '2rem', marginBottom: isMobile ? '1rem' : '1.5rem' }}>{product.name}</h3>
+            <p style={{ lineHeight: '1.6', marginBottom: isMobile ? '1.5rem' : '2rem', color: '#b0b0b0', fontSize: isMobile ? '0.9rem' : '1rem' }}>
               {product.description}
             </p>
-            <h4 style={{ marginBottom: '1rem' }}>Key Features:</h4>
+            <h4 style={{ marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.25rem' }}>Key Features:</h4>
             <div style={featureListStyle}>
               {product.features.map((feature, index) => (
                 <div key={index} style={featureItemStyle}>
@@ -277,17 +280,17 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
             
             {product.specifications && (
               <div style={specsStyle}>
-                <h4 style={{ marginBottom: '1rem' }}>Specifications:</h4>
+                <h4 style={{ marginBottom: '1rem', fontSize: isMobile ? '1.1rem' : '1.25rem' }}>Specifications:</h4>
                 {Object.entries(product.specifications).map(([key, value], index) => (
                   <div key={index} style={specItemStyle}>
-                    <span style={{ fontWeight: '500' }}>{key}:</span>
-                    <span style={{ opacity: 0.8 }}>{value}</span>
+                    <span style={{ fontWeight: '500', minWidth: isMobile ? '100px' : 'auto' }}>{key}:</span>
+                    <span style={{ opacity: 0.8, textAlign: 'right' }}>{value}</span>
                   </div>
                 ))}
               </div>
             )}
             
-            <button className="btn-primary" style={{ width: '100%', marginTop: '2rem' }}>
+            <button className="btn-primary" style={{ width: '100%', marginTop: isMobile ? '1.5rem' : '2rem', padding: isMobile ? '10px' : '12px', fontSize: isMobile ? '0.95rem' : '1rem' }}>
               Get Quote
             </button>
           </div>
