@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import { FaShoppingCart, FaHeart, FaShare, FaArrowLeft } from 'react-icons/fa';
 import { productCategories, products } from '../data/products';
 
-const ProductsLightbox = () => {
+const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(initialProduct);
 
   const filteredProducts = selectedCategory === 'all' 
     ? products 
@@ -39,9 +39,8 @@ const ProductsLightbox = () => {
   };
 
   const productCardStyle = {
-    background: 'rgba(255, 255, 255, 0.1)',
-    backdropFilter: 'blur(10px)',
-    border: '1px solid rgba(255, 255, 255, 0.2)',
+    background: '#2d2d2d',
+    border: '1px solid #404040',
     borderRadius: '16px',
     overflow: 'hidden',
     transition: 'all 0.3s ease',
@@ -50,8 +49,10 @@ const ProductsLightbox = () => {
 
   const productImageStyle = {
     width: '100%',
-    height: '200px',
-    objectFit: 'cover',
+    height: '250px',
+    objectFit: 'contain',
+    backgroundColor: '#f5f5f5',
+    padding: '20px',
   };
 
   const productInfoStyle = {
@@ -61,13 +62,13 @@ const ProductsLightbox = () => {
   const productNameStyle = {
     fontSize: '1.2rem',
     fontWeight: '600',
-    color: 'white',
+    color: '#e5e5e5',
     marginBottom: '1rem',
   };
 
   const descriptionStyle = {
     fontSize: '0.9rem',
-    opacity: 0.8,
+    color: '#b0b0b0',
     lineHeight: '1.5',
     marginBottom: '1.5rem',
     display: '-webkit-box',
@@ -99,12 +100,15 @@ const ProductsLightbox = () => {
     const detailImageStyle = {
       width: '100%',
       height: '400px',
-      objectFit: 'cover',
+      objectFit: 'contain',
       borderRadius: '12px',
+      backgroundColor: '#f5f5f5',
+      padding: '30px',
+      border: '1px solid #404040',
     };
 
     const detailsStyle = {
-      color: 'white',
+      color: '#e5e5e5',
     };
 
     const featureListStyle = {
@@ -116,25 +120,28 @@ const ProductsLightbox = () => {
     };
 
     const featureItemStyle = {
-      background: 'rgba(102, 126, 234, 0.2)',
+      background: '#3a3a3a',
+      color: '#b0b0b0',
       padding: '0.5rem 1rem',
       borderRadius: '20px',
       fontSize: '14px',
       textAlign: 'center',
+      border: '1px solid #505050',
     };
 
     const specsStyle = {
-      background: 'rgba(255, 255, 255, 0.05)',
+      background: '#3a3a3a',
       padding: '1.5rem',
       borderRadius: '12px',
       marginTop: '2rem',
+      border: '1px solid #505050',
     };
 
     const specItemStyle = {
       display: 'flex',
       justifyContent: 'space-between',
       padding: '0.5rem 0',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+      borderBottom: '1px solid #505050',
     };
 
     return (
@@ -142,16 +149,25 @@ const ProductsLightbox = () => {
         <button
           onClick={onClose}
           style={{
-            background: 'rgba(255, 255, 255, 0.1)',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
+            background: '#2d2d2d',
+            border: '1px solid #505050',
             borderRadius: '8px',
-            color: 'white',
+            color: '#e5e5e5',
             padding: '8px 16px',
             cursor: 'pointer',
             marginBottom: '2rem',
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
+            transition: 'all 0.3s ease',
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = '#3a3a3a';
+            e.target.style.borderColor = '#707070';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = '#2d2d2d';
+            e.target.style.borderColor = '#505050';
           }}
         >
           <FaArrowLeft />
@@ -164,7 +180,7 @@ const ProductsLightbox = () => {
           </div>
           <div style={detailsStyle}>
             <h3 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>{product.name}</h3>
-            <p style={{ lineHeight: '1.6', marginBottom: '2rem', opacity: 0.9 }}>
+            <p style={{ lineHeight: '1.6', marginBottom: '2rem', color: '#b0b0b0' }}>
               {product.description}
             </p>
             <h4 style={{ marginBottom: '1rem' }}>Key Features:</h4>
@@ -194,22 +210,40 @@ const ProductsLightbox = () => {
                 Get Quote
               </button>
               <button style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
+                background: '#2d2d2d',
+                border: '1px solid #505050',
                 borderRadius: '8px',
-                color: 'white',
+                color: '#e5e5e5',
                 padding: '12px',
                 cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = '#3a3a3a';
+                e.target.style.borderColor = '#707070';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = '#2d2d2d';
+                e.target.style.borderColor = '#505050';
               }}>
                 <FaHeart />
               </button>
               <button style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
+                background: '#2d2d2d',
+                border: '1px solid #505050',
                 borderRadius: '8px',
-                color: 'white',
+                color: '#e5e5e5',
                 padding: '12px',
                 cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = '#3a3a3a';
+                e.target.style.borderColor = '#707070';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = '#2d2d2d';
+                e.target.style.borderColor = '#505050';
               }}>
                 <FaShare />
               </button>
@@ -236,19 +270,23 @@ const ProductsLightbox = () => {
                 style={{
                   ...categoryButtonStyle,
                   background: selectedCategory === category.id 
-                    ? 'linear-gradient(45deg, #667eea, #764ba2)' 
-                    : 'rgba(255, 255, 255, 0.1)',
-                  color: 'white',
+                    ? 'linear-gradient(135deg, #505050, #3a3a3a)' 
+                    : '#2d2d2d',
+                  color: selectedCategory === category.id ? '#e5e5e5' : '#b0b0b0',
+                  border: '1px solid #505050',
+                  fontWeight: selectedCategory === category.id ? '600' : '500',
                 }}
                 onClick={() => setSelectedCategory(category.id)}
                 onMouseEnter={(e) => {
                   if (selectedCategory !== category.id) {
-                    e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                    e.target.style.background = '#3a3a3a';
+                    e.target.style.borderColor = '#707070';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (selectedCategory !== category.id) {
-                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                    e.target.style.background = '#2d2d2d';
+                    e.target.style.borderColor = '#505050';
                   }
                 }}
               >
@@ -271,7 +309,7 @@ const ProductsLightbox = () => {
                 whileHover={{ 
                   y: -8, 
                   boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
-                  background: 'rgba(255, 255, 255, 0.15)'
+                  borderColor: '#707070'
                 }}
                 onClick={() => setSelectedProduct(product)}
               >
@@ -302,10 +340,10 @@ const ProductsLightbox = () => {
                     </button>
                     <button 
                       style={{
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        background: '#2d2d2d',
+                        border: '1px solid #505050',
                         borderRadius: '8px',
-                        color: 'white',
+                        color: '#e5e5e5',
                         padding: '10px 16px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
@@ -315,10 +353,12 @@ const ProductsLightbox = () => {
                         // Get quote functionality
                       }}
                       onMouseEnter={(e) => {
-                        e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                        e.target.style.background = '#3a3a3a';
+                        e.target.style.borderColor = '#707070';
                       }}
                       onMouseLeave={(e) => {
-                        e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                        e.target.style.background = '#2d2d2d';
+                        e.target.style.borderColor = '#505050';
                       }}
                     >
                       <FaShoppingCart />
@@ -333,9 +373,9 @@ const ProductsLightbox = () => {
             <div style={{
               textAlign: 'center',
               padding: '3rem',
-              opacity: 0.7,
+              color: '#b0b0b0',
             }}>
-              <h3>No products found in this category</h3>
+              <h3 style={{ color: '#e5e5e5', marginBottom: '1rem' }}>No products found in this category</h3>
               <p>Please select a different category to view products.</p>
             </div>
           )}

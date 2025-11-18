@@ -508,6 +508,36 @@ export const products = [
       "Warranty": "1 Year"
     }
   },
+  {
+    id: 15,
+    name: "Smart Biometric Door Lock",
+    category: "security-sensors",
+    image: "/jio-door-sensor.png",
+    description: "Advanced biometric door lock with fingerprint recognition, password entry, and RFID card access. Features auto-locking, remote monitoring, and multiple unlock methods for maximum security and convenience.",
+    features: [
+      "Fingerprint Recognition (100+ fingerprints)",
+      "Password & PIN Access",
+      "RFID Card Support",
+      "Remote Lock/Unlock via App",
+      "Auto-Lock Function",
+      "Anti-Peep Password",
+      "Low Battery Alert",
+      "Tamper Alarm"
+    ],
+    specifications: {
+      "Lock Type": "Biometric Fingerprint + Password + RFID",
+      "Fingerprint Capacity": "Up to 100 fingerprints",
+      "Password Capacity": "Up to 50 passwords",
+      "Card Capacity": "Up to 100 RFID cards",
+      "Wireless": "Wi-Fi + Bluetooth",
+      "Battery Life": "8-12 months (8 AA batteries)",
+      "Emergency Power": "USB power port",
+      "Material": "Zinc Alloy + Stainless Steel",
+      "Operating Temperature": "-20°C to 60°C",
+      "Unlock Methods": "Fingerprint, Password, Card, App, Mechanical Key",
+      "Warranty": "2 Years"
+    }
+  },
 
   // Environmental Sensors (3 products)
   {

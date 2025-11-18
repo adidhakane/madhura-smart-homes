@@ -20,9 +20,9 @@ const Lightbox = ({ isOpen, onClose, children, title }) => {
   };
 
   const modalStyle = {
-    background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%)',
+    background: 'rgba(26, 26, 26, 0.98)',
     backdropFilter: 'blur(20px)',
-    border: '1px solid rgba(255, 255, 255, 0.2)',
+    border: '1px solid #404040',
     borderRadius: '20px',
     maxWidth: '90vw',
     maxHeight: '90vh',
