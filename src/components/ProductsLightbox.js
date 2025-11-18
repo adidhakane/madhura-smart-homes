@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaShoppingCart, FaHeart, FaShare, FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
 import { productCategories, products } from '../data/products';
 
 const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedProduct, setSelectedProduct] = useState(initialProduct);
+
+  // Mobile detection
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
   const filteredProducts = selectedCategory === 'all' 
     ? products 
@@ -17,9 +20,24 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
 
   const categoryStyle = {
     display: 'flex',
-    gap: '1rem',
+    gap: '0.75rem',
     marginBottom: '2rem',
+    overflowX: 'auto',
+    paddingBottom: '0.5rem',
+    scrollbarWidth: 'thin',
+    WebkitOverflowScrolling: 'touch',
+    justifyContent: 'center',
     flexWrap: 'wrap',
+  };
+
+  const responsiveCategoryStyle = {
+    ...categoryStyle,
+    ...(isMobile && {
+      marginBottom: '1.5rem',
+      gap: '0.5rem',
+      justifyContent: 'flex-start',
+      flexWrap: 'nowrap',
+    })
   };
 
   const categoryButtonStyle = {
@@ -30,12 +48,30 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
     transition: 'all 0.3s ease',
     fontSize: '14px',
     fontWeight: '500',
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+  };
+
+  const responsiveButtonStyle = {
+    ...categoryButtonStyle,
+    ...(isMobile && {
+      fontSize: '11px',
+      padding: '6px 12px',
+    })
   };
 
   const gridStyle = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
     gap: '2rem',
+  };
+
+  const responsiveGridStyle = {
+    ...gridStyle,
+    ...(isMobile && {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gap: '0.75rem',
+    })
   };
 
   const productCardStyle = {
@@ -47,6 +83,13 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
     cursor: 'pointer',
   };
 
+  const responsiveCardStyle = {
+    ...productCardStyle,
+    ...(isMobile && {
+      borderRadius: '12px',
+    })
+  };
+
   const productImageStyle = {
     width: '100%',
     height: '250px',
@@ -55,8 +98,23 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
     padding: '20px',
   };
 
+  const responsiveImageStyle = {
+    ...productImageStyle,
+    ...(isMobile && {
+      height: '140px',
+      padding: '10px',
+    })
+  };
+
   const productInfoStyle = {
     padding: '1.5rem',
+  };
+
+  const responsiveInfoStyle = {
+    ...productInfoStyle,
+    ...(isMobile && {
+      padding: '0.75rem',
+    })
   };
 
   const productNameStyle = {
@@ -64,6 +122,14 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
     fontWeight: '600',
     color: '#e5e5e5',
     marginBottom: '1rem',
+  };
+
+  const responsiveNameStyle = {
+    ...productNameStyle,
+    ...(isMobile && {
+      fontSize: '0.85rem',
+      marginBottom: '0.5rem',
+    })
   };
 
   const descriptionStyle = {
@@ -77,10 +143,27 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
     overflow: 'hidden',
   };
 
+  const responsiveDescriptionStyle = {
+    ...descriptionStyle,
+    ...(isMobile && {
+      fontSize: '0.75rem',
+      marginBottom: '0.75rem',
+      WebkitLineClamp: 1,
+      lineHeight: '1.3',
+    })
+  };
+
   const actionButtonsStyle = {
     display: 'flex',
     gap: '0.5rem',
     marginTop: '1rem',
+  };
+
+  const responsiveButtonsStyle = {
+    ...actionButtonsStyle,
+    ...(isMobile && {
+      gap: '0.25rem',
+    })
   };
 
   const ProductDetailModal = ({ product, onClose }) => {
@@ -204,50 +287,9 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
               </div>
             )}
             
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
-              <button className="btn-primary" style={{ flex: 1 }}>
-                <FaShoppingCart style={{ marginRight: '0.5rem' }} />
-                Get Quote
-              </button>
-              <button style={{
-                background: '#2d2d2d',
-                border: '1px solid #505050',
-                borderRadius: '8px',
-                color: '#e5e5e5',
-                padding: '12px',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#3a3a3a';
-                e.target.style.borderColor = '#707070';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = '#2d2d2d';
-                e.target.style.borderColor = '#505050';
-              }}>
-                <FaHeart />
-              </button>
-              <button style={{
-                background: '#2d2d2d',
-                border: '1px solid #505050',
-                borderRadius: '8px',
-                color: '#e5e5e5',
-                padding: '12px',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#3a3a3a';
-                e.target.style.borderColor = '#707070';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = '#2d2d2d';
-                e.target.style.borderColor = '#505050';
-              }}>
-                <FaShare />
-              </button>
-            </div>
+            <button className="btn-primary" style={{ width: '100%', marginTop: '2rem' }}>
+              Get Quote
+            </button>
           </div>
         </div>
       </div>
@@ -263,12 +305,12 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
         />
       ) : (
         <>
-          <div style={categoryStyle}>
+          <div style={responsiveCategoryStyle}>
             {productCategories.map((category) => (
               <button
                 key={category.id}
                 style={{
-                  ...categoryButtonStyle,
+                  ...responsiveButtonStyle,
                   background: selectedCategory === category.id 
                     ? 'linear-gradient(135deg, #505050, #3a3a3a)' 
                     : '#2d2d2d',
@@ -296,13 +338,13 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
           </div>
 
           <motion.div 
-            style={gridStyle}
+            style={responsiveGridStyle}
             layout
           >
             {filteredProducts.map((product, index) => (
               <motion.div
                 key={product.id}
-                style={productCardStyle}
+                style={responsiveCardStyle}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
@@ -313,57 +355,30 @@ const ProductsLightbox = ({ selectedProduct: initialProduct }) => {
                 }}
                 onClick={() => setSelectedProduct(product)}
               >
-                <img src={product.image} alt={product.name} style={productImageStyle} />
-                <div style={productInfoStyle}>
-                  <h3 style={productNameStyle}>{product.name}</h3>
-                  <p style={descriptionStyle}>
+                <img src={product.image} alt={product.name} style={responsiveImageStyle} />
+                <div style={responsiveInfoStyle}>
+                  <h3 style={responsiveNameStyle}>{product.name}</h3>
+                  <p style={responsiveDescriptionStyle}>
                     {product.description}
                   </p>
-                  <div style={actionButtonsStyle}>
-                    <button 
-                      className="btn-primary" 
-                      style={{ 
-                        flex: 1, 
-                        fontSize: '14px', 
-                        padding: '10px 16px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '0.5rem'
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedProduct(product);
-                      }}
-                    >
-                      View Details
-                    </button>
-                    <button 
-                      style={{
-                        background: '#2d2d2d',
-                        border: '1px solid #505050',
-                        borderRadius: '8px',
-                        color: '#e5e5e5',
-                        padding: '10px 16px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // Get quote functionality
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.background = '#3a3a3a';
-                        e.target.style.borderColor = '#707070';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.background = '#2d2d2d';
-                        e.target.style.borderColor = '#505050';
-                      }}
-                    >
-                      <FaShoppingCart />
-                    </button>
-                  </div>
+                  <button 
+                    className="btn-primary" 
+                    style={{ 
+                      width: '100%',
+                      fontSize: isMobile ? '11px' : '14px',
+                      padding: isMobile ? '8px 12px' : '10px 16px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.5rem'
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedProduct(product);
+                    }}
+                  >
+                    View Details
+                  </button>
                 </div>
               </motion.div>
             ))}

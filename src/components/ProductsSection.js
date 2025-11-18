@@ -570,47 +570,22 @@ const ProductsSection = ({ onProductClick }) => {
               <div style={responsiveInfoStyle}>
                 <h3 style={responsiveNameStyle}>{product.name}</h3>
                 <p style={responsiveDescriptionStyle}>{product.description}</p>
-                <div style={responsiveButtonsStyle}>
-                  <button 
-                    className="btn-primary" 
-                    style={{ 
-                      flex: 1, 
-                      fontSize: isMobile ? '10px' : '13px', 
-                      padding: isMobile ? '6px 8px' : '8px 12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '0.3rem'
-                    }}
-                  >
-                    <FaEye />
-                    {!isMobile && 'View Details'}
-                    {isMobile && 'View'}
-                  </button>
-                  <button 
-                    style={{
-                      background: '#2d2d2d',
-                      border: '1px solid #e0e0e0',
-                      borderRadius: '6px',
-                      color: '#e5e5e5',
-                      padding: isMobile ? '6px 8px' : '8px 12px',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = '#3a3a3a';
-                      e.target.style.borderColor = '#5a5a5a';
-                      e.target.style.color = '#5a5a5a';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = '#2d2d2d';
-                      e.target.style.borderColor = '#e0e0e0';
-                      e.target.style.color = '#e5e5e5';
-                    }}
-                  >
-                    <FaShoppingCart />
-                  </button>
-                </div>
+                <button 
+                  className="btn-primary" 
+                  style={{ 
+                    width: '100%',
+                    fontSize: isMobile ? '10px' : '13px', 
+                    padding: isMobile ? '6px 8px' : '8px 12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.3rem'
+                  }}
+                >
+                  <FaEye />
+                  {!isMobile && 'View Details'}
+                  {isMobile && 'View'}
+                </button>
               </div>
             </motion.div>
           ))}

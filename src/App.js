@@ -8,6 +8,7 @@ import TestimonialsSection from './components/TestimonialsSection';
 import ContactForm from './components/ContactForm';
 import Lightbox from './components/Lightbox';
 import ProductsLightbox from './components/ProductsLightbox';
+import StickyContactButton from './components/StickyContactButton';
 import './styles/globals.css';
 
 function App() {
@@ -27,6 +28,10 @@ function App() {
     }
   };
 
+  const handleContactClick = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="App">
       <Header />
@@ -38,6 +43,8 @@ function App() {
         {/* <TestimonialsSection /> */}
         <ContactForm />
       </main>
+
+      <StickyContactButton onClick={handleContactClick} />
 
       {enableProductLightboxes && (
         <Lightbox

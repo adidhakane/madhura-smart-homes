@@ -168,6 +168,7 @@ import ContactLightbox from './ContactLightbox';
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Feature flag to control lightbox behavior
   // Set to true to show lightboxes, false to scroll to sections
@@ -191,7 +192,6 @@ const Header = () => {
     transition: 'all 0.3s ease',
     background: scrolled ? 'rgba(26, 26, 26, 0.95)' : 'rgba(26, 26, 26, 0.8)',
     backdropFilter: 'blur(10px)',
-    borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid transparent',
     boxShadow: scrolled ? '0 2px 10px rgba(0, 0, 0, 0.5)' : 'none',
   };
 
@@ -245,7 +245,51 @@ const Header = () => {
     padding: '0.5rem 0',
   };
 
+  const mobileMenuButtonStyle = {
+    display: 'none',
+    background: 'none',
+    border: 'none',
+    color: '#e5e5e5',
+    fontSize: '1.5rem',
+    cursor: 'pointer',
+    padding: '0.5rem',
+    transition: 'all 0.3s ease',
+  };
+
+  const mobileMenuStyle = {
+    position: 'fixed',
+    top: scrolled ? '70px' : '82px',
+    left: 0,
+    right: 0,
+    background: 'rgba(26, 26, 26, 0.98)',
+    backdropFilter: 'blur(20px)',
+    padding: '1rem 0',
+    boxShadow: mobileMenuOpen ? '0 4px 20px rgba(0, 0, 0, 0.5)' : 'none',
+    transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(-120%)',
+    transition: 'transform 0.3s ease',
+    zIndex: 1001,
+    visibility: mobileMenuOpen ? 'visible' : 'hidden',
+  };
+
+  const mobileNavLinksStyle = {
+    listStyle: 'none',
+    padding: '0',
+    margin: '0',
+  };
+
+  const mobileLinkStyle = {
+    display: 'block',
+    padding: '1rem 2rem',
+    color: '#b0b0b0',
+    textDecoration: 'none',
+    fontSize: '1.1rem',
+    fontWeight: '500',
+    transition: 'all 0.3s ease',
+    cursor: 'pointer',
+  };
+
   const handleNavClick = (section) => {
+    setMobileMenuOpen(false);
     if (enableLightboxes && section === 'products') {
       setActiveModal('products');
     } else if (enableLightboxes && section === 'contact') {
@@ -347,7 +391,84 @@ const Header = () => {
               </a>
             </li>
           </ul>
+          <button 
+            style={mobileMenuButtonStyle}
+            className="mobile-menu-button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? '\u2715' : '\u2630'}
+          </button>
         </nav>
+
+        {/* Mobile Menu */}
+        <div style={mobileMenuStyle}>
+          <ul style={mobileNavLinksStyle}>
+            <li>
+              <a 
+                style={mobileLinkStyle}
+                onClick={() => handleNavClick('home')}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'rgba(58, 58, 58, 0.5)';
+                  e.target.style.color = '#e5e5e5';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = '#b0b0b0';
+                }}
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a 
+                style={mobileLinkStyle}
+                onClick={() => handleNavClick('features')}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'rgba(58, 58, 58, 0.5)';
+                  e.target.style.color = '#e5e5e5';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = '#b0b0b0';
+                }}
+              >
+                Features
+              </a>
+            </li>
+            <li>
+              <a 
+                style={mobileLinkStyle}
+                onClick={() => handleNavClick('products')}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'rgba(58, 58, 58, 0.5)';
+                  e.target.style.color = '#e5e5e5';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = '#b0b0b0';
+                }}
+              >
+                Products
+              </a>
+            </li>
+            <li>
+              <a 
+                style={mobileLinkStyle}
+                onClick={() => handleNavClick('contact')}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'rgba(58, 58, 58, 0.5)';
+                  e.target.style.color = '#e5e5e5';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'transparent';
+                  e.target.style.color = '#b0b0b0';
+                }}
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
       </motion.header>
 
       {enableLightboxes && (

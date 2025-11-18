@@ -739,6 +739,10 @@ html {
     display: none !important;
   }
   
+  .mobile-menu-button {
+    display: block !important;
+  }
+  
   /* Hero section responsive */
   h1 {
     font-size: 2.5rem !important;
