@@ -47,7 +47,7 @@ const Header = () => {
   const logoContainerStyle = {
     display: 'flex',
     alignItems: 'center',
-    gap: '1rem',
+    gap: '0.0rem',
     cursor: 'pointer',
   };
 
@@ -56,7 +56,7 @@ const Header = () => {
     width: 'auto',
     transition: 'all 0.3s ease',
     objectFit: 'contain',
-    backgroundColor: '#ffffff',
+    // backgroundColor: '#ffffff',
     padding: '8px 12px',
     borderRadius: '8px',
   };
@@ -155,7 +155,7 @@ const Header = () => {
             onClick={() => handleNavClick('home')}
           >
             <img 
-              src="/logo.jpg" 
+              src="/Madhura-Logo-Transparent.png" 
               alt="Madhura" 
               style={logoImageStyle}
             />
