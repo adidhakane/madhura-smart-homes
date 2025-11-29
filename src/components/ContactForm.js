@@ -932,7 +932,7 @@ const ContactForm = () => {
                 <FaPhone style={iconStyle} className="info-icon" />
                 <div>
                   <h4 style={{ marginBottom: '0.5rem', color: '#e5e5e5' }}>Phone</h4>
-                  <p style={{ color: '#b0b0b0', margin: 0 }}>+91 84320 23486</p>
+                  <p style={{ color: '#b0b0b0', margin: 0 }}>+91 75586 98796</p>
                 </div>
               </div>
 
